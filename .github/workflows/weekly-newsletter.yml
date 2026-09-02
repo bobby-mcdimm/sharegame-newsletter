@@ -2,9 +2,7 @@ name: Weekly Newsletter
 
 on:
   schedule:
-    # Runs every Monday at 09:00 UTC. GitHub Actions is free for scheduled
-    # workflows on public repos, and has a generous free minutes allowance
-    # on private repos too — this job takes seconds, so it's a non-issue.
+    # Runs every Monday at 09:00 UTC. Free on GitHub Actions.
     - cron: "0 9 * * 1"
   workflow_dispatch: {}  # lets you trigger it manually from the Actions tab
 
@@ -26,8 +24,5 @@ jobs:
       - name: Generate and send newsletter
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
-          BREVO_LIST_ID: ${{ secrets.BREVO_LIST_ID }}
-          BREVO_SENDER_EMAIL: ${{ secrets.BREVO_SENDER_EMAIL }}
-          ADMIN_ALERT_EMAIL: ${{ secrets.ADMIN_ALERT_EMAIL }}
+          KIT_API_KEY: ${{ secrets.KIT_API_KEY }}
         run: python generate_newsletter.py
